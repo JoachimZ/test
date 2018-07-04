@@ -1,0 +1,86 @@
+{
+    "meta": {
+        "label": "Auto feature aggregation - Transform",
+        "description": "",
+        "author": "Dataiku (Du Phan)",
+        "tags": ["Machine Learning", "Feature engineering", "Time series"]
+    },
+
+    "kind": "PYTHON",
+
+    "inputRoles": [
+        {
+            "name": "input_dataset",
+            "label": "Table to apply feature aggregation",
+            "description": "Input dataset",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        },
+        {
+            "name": "input_folder",
+            "label": "Model folder",
+            "description": "Folder that stocks the model parameters and metadata",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder": true
+        }
+    ],
+
+    "outputRoles": [
+        {
+            "name": "output_dataset",
+            "label": "Augmented table with all the aggregated features",
+            "description": "Dataset after feature engineering",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": true
+        }
+    ],
+
+    // The available parameter types are:
+    // STRING, INT, DOUBLE, BOOLEAN, PASSWORD, SELECT, MAP, COLUMN, COLUMNS, TEXTAREA
+
+    "params": [
+        {
+            "name": "sep0",
+            "label": "Advanced configuration",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "ref_date",
+            "label": "Reference date (optional)",
+            "type": "STRING",
+            "description":"The date from which we want to aggregate features. For example: 2014-12-01",
+            "mandatory": false
+        },
+        {
+            "name": "use_buffer",
+            "label": "Specify buffer",
+            "type": "BOOLEAN"
+        },
+        {
+            "name": "buffer_unit",
+            "label": "Buffer unit",
+            "type": "SELECT",
+            "selectChoices": [
+                { "value": "day", "label": "Day"},
+                { "value": "month", "label": "Month"},
+                { "value": "year", "label": "Year"},
+                { "value": "row", "label": "Row"}
+            ],
+            "defaultValue": "day",
+            "visibilityCondition": "model.use_buffer"
+        },
+        {
+            "name": "buffer_width",
+            "label": "Buffer width",
+            "type": "INT",
+            "description":"Non-negative integer",
+            "mandatory": false,
+            "visibilityCondition": "model.use_buffer"
+        }
+    ]
+
+}

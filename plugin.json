@@ -1,0 +1,13 @@
+{
+    "id": "auto-feature-aggregations",
+    "version": "0.2.0",
+    "meta": {
+        "label": "Automatic feature aggregations",
+        "description": "",
+        "icon": "icon-magic",
+        "licenseInfo": "Apache Software License",
+        "url": "https://www.dataiku.com",
+        "author": "Dataiku (Du Phan)",
+        "tags": ["Machine Learning", "Feature engineering", "Time series"]
+    }
+}
